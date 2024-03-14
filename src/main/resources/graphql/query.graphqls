@@ -1,0 +1,32 @@
+type Query {
+	#User
+	user(userId : String): UserResponse
+
+	#Cancha
+	cancha(canchaId: String): CanchaResponse
+	canchaGetAll: [CanchaResponse]
+}
+
+type UserResponse {
+	id: ID
+	name: String
+	lastName: String
+	email: String
+	password: String
+	bookingList: [BookingResponse]
+}
+
+type BookingResponse {
+	id: ID
+	user: UserResponse
+	cancha: CanchaResponse
+	isReserved: Boolean
+	time: String
+}
+
+type CanchaResponse {
+	id: ID
+	name: String
+	address: String
+	capacity: Int
+}

@@ -1,0 +1,40 @@
+type Mutation {
+
+    #User
+    createUser(createUserRequest: CreateUserRequest): UserResponse
+    deleteUserById(userId: String): ID
+
+    #Cancha
+    canchaCreate(createCanchaRequest: CreateCanchaRequest): CanchaResponse
+    canchaDelete(canchaId: String): ID
+
+    #Booking
+    createBooking(createBookingRequest: CreateBookingRequest): BookingResponse
+}
+
+input CreateUserRequest {
+    name: String!
+    lastName: String!
+    email: String!
+    password: String!
+    bookingList: [BookingRequest]
+}
+
+input BookingRequest {
+    is_reserved: Boolean!
+    time: String!
+    cancha: CreateCanchaRequest!
+}
+
+input CreateBookingRequest {
+    is_reserved: Boolean!
+    time: String!
+    cancha: String!
+    user: String!
+}
+
+input CreateCanchaRequest {
+    address: String!
+    capacity: Int!
+    name: String!
+}
