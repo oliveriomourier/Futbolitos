@@ -7,12 +7,11 @@ import java.util.List;
 
 @Data
 public class CanchaResponse {
-    private Long id;
+    private Integer id;
     private String name;
     private String address;
     private Integer capacity;
     private Boolean reserved;
-    private List<BookingResponse> bookingList;
 
     public CanchaResponse(Cancha cancha) {
         this.id = cancha.getId();

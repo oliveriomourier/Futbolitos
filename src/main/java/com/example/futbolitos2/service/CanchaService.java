@@ -29,8 +29,8 @@ public class CanchaService {
         return cancha;
     }
 
-    public Cancha getCanchaById(Long id) throws CanchaException {
-        return canchaRepository.findById(id)
+    public Cancha getCanchaById(Integer id) throws CanchaException {
+        return canchaRepository.findById(Long.valueOf(id))
                 .orElseThrow(() -> new UserNotFoundException("Cancha with id: " + id + " doesn't exist"));
     }
 
@@ -46,7 +46,7 @@ public class CanchaService {
         return canchaResponseList;
     }
 
-    public Long canchaDeleteById(long canchaId) throws UserNotFoundException{
+    public Integer canchaDeleteById(Integer canchaId) throws UserNotFoundException{
         //verify if the cancha exist
         Cancha cancha = getCanchaById(canchaId);
 

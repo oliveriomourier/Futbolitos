@@ -1,6 +1,7 @@
 package com.example.futbolitos2.entity;
 
 import com.example.futbolitos2.request.CreateUserRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ public class User
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -32,6 +33,7 @@ public class User
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Booking> bookingList;
 
     public User(CreateUserRequest createUserRequest) {

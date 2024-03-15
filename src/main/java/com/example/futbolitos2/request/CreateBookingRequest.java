@@ -6,8 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateBookingRequest {
-    private Boolean is_reserver;
+    private Boolean isReserved;
     private String time;
-    private String canchaId;
-    private String userId;
+    private Integer canchaId;
+    private Integer userId;
 }

@@ -19,17 +19,18 @@ public class BookingService {
 
     public Booking createBooking(CreateBookingRequest bookingRequest){
         //verificar que user exista
-        User user = userService.getUserById(Long.parseLong(bookingRequest.getUserId()));
+        User user = userService.getUserById(bookingRequest.getUserId());
 
         //verificar que cancha exista
-        Cancha cancha = canchaService.getCanchaById(Long.parseLong(bookingRequest.getCanchaId()));
+        Cancha cancha = canchaService.getCanchaById(bookingRequest.getCanchaId());
 
         // crear la reserva
         Booking booking = new Booking();
-        booking.setIsReserved(bookingRequest.getIs_reserver());
+        booking.setIsReserved(bookingRequest.getIsReserved());
         booking.setUser(user);
         booking.setCancha(cancha);
         booking.setTime(bookingRequest.getTime());
+
 
         //guardar la reserva en la BBDD
         bookingRepository.save(booking);

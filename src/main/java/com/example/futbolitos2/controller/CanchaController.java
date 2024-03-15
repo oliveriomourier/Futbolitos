@@ -18,9 +18,8 @@ public class CanchaController {
     CanchaService canchaService;
 
     @QueryMapping
-    public CanchaResponse cancha(@Argument String canchaId){
-        Long longCanchaId = Long.parseLong(canchaId);
-        return new CanchaResponse(canchaService.getCanchaById(longCanchaId));
+    public CanchaResponse cancha(@Argument Integer canchaId){
+        return new CanchaResponse(canchaService.getCanchaById(canchaId));
     }
 
     @MutationMapping
@@ -35,8 +34,7 @@ public class CanchaController {
     }
 
     @MutationMapping
-    public Long canchaDelete(@Argument String canchaId){
-        Long longCanchaId = Long.parseLong(canchaId);
-        return canchaService.canchaDeleteById(longCanchaId);
+    public Integer canchaDelete(@Argument Integer canchaId){
+        return canchaService.canchaDeleteById(canchaId);
     }
 }

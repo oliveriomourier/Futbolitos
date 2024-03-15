@@ -15,9 +15,8 @@ public class UserController {
     UserService userService;
 
     @QueryMapping
-    public UserResponse user(@Argument String userId){
-        Long longUserId = Long.parseLong(userId);
-        return new UserResponse(userService.getUserById(longUserId));
+    public UserResponse user(@Argument Integer userId){
+        return new UserResponse(userService.getUserById(userId));
     }
 
     @MutationMapping
@@ -26,9 +25,7 @@ public class UserController {
     }
 
     @MutationMapping
-    public Long deleteUserById(@Argument String userId){
-        Long longUserId = Long.parseLong(userId);
-        Long id = userService.userDeleteById(longUserId);
-        return id;
+    public Integer deleteUserById(@Argument Integer userId){
+        return userService.userDeleteById(userId);
     }
 }

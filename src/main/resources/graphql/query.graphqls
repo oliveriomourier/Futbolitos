@@ -1,9 +1,9 @@
 type Query {
 	#User
-	user(userId : String): UserResponse
+	user(userId : Int): UserResponse
 
 	#Cancha
-	cancha(canchaId: String): CanchaResponse
+	cancha(canchaId: Int): CanchaResponse
 	canchaGetAll: [CanchaResponse]
 }
 
@@ -13,7 +13,6 @@ type UserResponse {
 	lastName: String
 	email: String
 	password: String
-	bookingList: [BookingResponse]
 }
 
 type BookingResponse {

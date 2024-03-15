@@ -1,6 +1,7 @@
 package com.example.futbolitos2.entity;
 
 import com.example.futbolitos2.request.CreateCanchaRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class Cancha
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -28,6 +29,7 @@ public class Cancha
     private Integer capacity;
 
     @OneToMany(mappedBy = "cancha", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Booking> bookingList;
 
     public Cancha(CreateCanchaRequest createCanchaRequest) {

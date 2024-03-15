@@ -2,11 +2,11 @@ type Mutation {
 
     #User
     createUser(createUserRequest: CreateUserRequest): UserResponse
-    deleteUserById(userId: String): ID
+    deleteUserById(userId: Int): ID
 
     #Cancha
     canchaCreate(createCanchaRequest: CreateCanchaRequest): CanchaResponse
-    canchaDelete(canchaId: String): ID
+    canchaDelete(canchaId: Int): ID
 
     #Booking
     createBooking(createBookingRequest: CreateBookingRequest): BookingResponse
@@ -21,16 +21,16 @@ input CreateUserRequest {
 }
 
 input BookingRequest {
-    is_reserved: Boolean!
+    isReserved: Boolean!
     time: String!
     cancha: CreateCanchaRequest!
 }
 
 input CreateBookingRequest {
-    is_reserved: Boolean!
+    isReserved: Boolean!
     time: String!
-    cancha: String!
-    user: String!
+    canchaId: Int!
+    userId: Int!
 }
 
 input CreateCanchaRequest {

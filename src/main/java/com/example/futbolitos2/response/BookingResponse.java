@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class BookingResponse {
-    private Long id;
+    private Integer id;
     private UserResponse user;
     private CanchaResponse cancha;
     private Boolean isReserved;
@@ -17,9 +17,5 @@ public class BookingResponse {
         this.id = booking.getId();
         this.isReserved = booking.getIsReserved();
         this.time = booking.getTime();
-        /* this.user = UserResponse.builder()
-                .id(booking.getUser().getId())
-                .build();
-         */
     }
 }

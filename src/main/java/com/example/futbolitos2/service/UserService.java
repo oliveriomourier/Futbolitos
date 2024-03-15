@@ -23,9 +23,9 @@ public class UserService {
     CanchaRepository canchaRepository;
     @Autowired
     BookingRepository bookingRepository;
-    public User getUserById(long userId) throws UserNotFoundException
+    public User getUserById(Integer userId) throws UserNotFoundException
     {
-            return userRepository.findById(userId)
+            return userRepository.findById(Long.valueOf(userId))
                     .orElseThrow(() -> new UserNotFoundException("User with id: " + userId + " doesn't exist"));
     }
 
@@ -43,7 +43,7 @@ public class UserService {
         if(createUserRequest.getBookingList() != null){
             for(BookingRequest bookingRequest : createUserRequest.getBookingList()){
                 Booking booking = new Booking();
-                booking.setIsReserved(bookingRequest.getIs_reserver());
+                booking.setIsReserved(bookingRequest.getIsReserved());
                 booking.setTime(bookingRequest.getTime());
 
                 Cancha cancha = new Cancha(bookingRequest.getCancha());
@@ -62,7 +62,7 @@ public class UserService {
         return user != null;
     }
 
-    public Long userDeleteById(long userId) throws UserNotFoundException{
+    public Integer userDeleteById(Integer userId) throws UserNotFoundException{
         //verify if the user exist
         User user = getUserById(userId);
 
