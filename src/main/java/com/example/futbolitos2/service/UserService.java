@@ -23,14 +23,13 @@ public class UserService {
     CanchaRepository canchaRepository;
     @Autowired
     BookingRepository bookingRepository;
-    public User getUserById(Integer userId) throws UserNotFoundException
-    {
-            return userRepository.findById(Long.valueOf(userId))
+    public User getUserById(Integer userId) throws UserNotFoundException {
+            return userRepository
+                    .findById(Long.valueOf(userId))
                     .orElseThrow(() -> new UserNotFoundException("User with id: " + userId + " doesn't exist"));
     }
 
-    public User createUser(CreateUserRequest createUserRequest) throws UserNotFoundException
-    {
+    public User createUser(CreateUserRequest createUserRequest) throws UserNotFoundException {
         String userEmail = createUserRequest.getEmail();
 
         if(userRepository.existsByEmail(userEmail)){
@@ -43,11 +42,9 @@ public class UserService {
         return user;
     }
 
-    public Integer userDeleteById(Integer userId) throws UserNotFoundException{
-        //verify if the user exist
+    public Integer userDeleteById(Integer userId) throws UserNotFoundException {
         User user = getUserById(userId);
 
-        // delete user
         userRepository.delete(user);
         return userId;
     }
