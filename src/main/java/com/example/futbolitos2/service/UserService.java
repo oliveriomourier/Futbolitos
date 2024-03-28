@@ -19,10 +19,7 @@ import java.util.List;
 public class UserService {
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    CanchaRepository canchaRepository;
-    @Autowired
-    BookingRepository bookingRepository;
+    
     public User getUserById(Integer userId) throws UserNotFoundException {
             return userRepository
                     .findById(Long.valueOf(userId))
