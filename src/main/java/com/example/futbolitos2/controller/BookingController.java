@@ -1,7 +1,6 @@
 package com.example.futbolitos2.controller;
 
 import com.example.futbolitos2.entity.Booking;
-import com.example.futbolitos2.entity.User;
 import com.example.futbolitos2.request.CreateBookingRequest;
 import com.example.futbolitos2.response.BookingResponse;
 import com.example.futbolitos2.response.CanchaResponse;
