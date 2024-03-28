@@ -17,7 +17,6 @@ input CreateUserRequest {
     lastName: String!
     email: String!
     password: String!
-    bookingList: [BookingRequest]
 }
 
 input BookingRequest {

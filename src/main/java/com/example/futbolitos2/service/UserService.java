@@ -31,35 +31,16 @@ public class UserService {
 
     public User createUser(CreateUserRequest createUserRequest) throws UserNotFoundException
     {
-        if(userExist(createUserRequest.getEmail())){
-            throw new UserNotFoundException("User with mail "+ createUserRequest.getEmail()+" is already register");
+        String userEmail = createUserRequest.getEmail();
+
+        if(userRepository.existsByEmail(userEmail)){
+            throw new UserNotFoundException("User with mail "+ userEmail +" is already register");
         }
 
         User user = new User(createUserRequest);
         userRepository.save(user);
 
-        List<Booking> bookingList = new ArrayList<Booking>();
-
-        if(createUserRequest.getBookingList() != null){
-            for(BookingRequest bookingRequest : createUserRequest.getBookingList()){
-                Booking booking = new Booking();
-                booking.setIsReserved(bookingRequest.getIsReserved());
-                booking.setTime(bookingRequest.getTime());
-
-                Cancha cancha = new Cancha(bookingRequest.getCancha());
-                booking.setCancha(cancha);
-
-                bookingList.add(booking);
-            }
-            bookingRepository.saveAll(bookingList);
-        }
-        user.setBookingList(bookingList);
         return user;
-    }
-
-    private Boolean userExist(String userEmail){
-        User user = userRepository.findByEmail(userEmail);
-        return user != null;
     }
 
     public Integer userDeleteById(Integer userId) throws UserNotFoundException{
