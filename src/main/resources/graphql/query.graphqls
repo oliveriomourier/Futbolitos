@@ -5,6 +5,9 @@ type Query {
 	#Cancha
 	cancha(canchaId: Int): CanchaResponse
 	canchaGetAll: [CanchaResponse]
+
+	#Booking
+	booking(bookingId: Int): BookingResponse
 }
 
 type UserResponse {

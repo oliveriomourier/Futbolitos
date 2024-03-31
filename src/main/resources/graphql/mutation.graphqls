@@ -10,6 +10,7 @@ type Mutation {
 
     #Booking
     createBooking(createBookingRequest: CreateBookingRequest): BookingResponse
+    deleteBookingById(bookingId: Int): ID
 }
 
 input CreateUserRequest {

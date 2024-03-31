@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -36,5 +37,6 @@ public class Cancha
         this.name = createCanchaRequest.getName();
         this.address = createCanchaRequest.getAddress();
         this.capacity = createCanchaRequest.getCapacity();
+        this.bookingList = new ArrayList<>();
     }
 }

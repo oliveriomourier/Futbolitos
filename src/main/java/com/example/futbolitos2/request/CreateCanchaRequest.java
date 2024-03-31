@@ -11,5 +11,4 @@ public class CreateCanchaRequest {
     private String address;
     private Integer capacity;
     private String name;
-    private List<BookingRequest> bookingList;
 }

@@ -1,25 +1,18 @@
 package com.example.futbolitos2.service;
 
-import com.example.futbolitos2.entity.Booking;
-import com.example.futbolitos2.entity.Cancha;
 import com.example.futbolitos2.entity.User;
 import com.example.futbolitos2.exception.UserNotFoundException;
-import com.example.futbolitos2.repository.BookingRepository;
-import com.example.futbolitos2.repository.CanchaRepository;
 import com.example.futbolitos2.repository.UserRepository;
-import com.example.futbolitos2.request.BookingRequest;
 import com.example.futbolitos2.request.CreateUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
     UserRepository userRepository;
-    
+
     public User getUserById(Integer userId) throws UserNotFoundException {
             return userRepository
                     .findById(Long.valueOf(userId))

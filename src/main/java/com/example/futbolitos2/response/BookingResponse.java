@@ -13,9 +13,11 @@ public class BookingResponse {
     private Booking booking; // no incluir dentro del schema
 
     public BookingResponse(Booking booking) {
-        this.booking = booking;
         this.id = booking.getId();
+        this.user = new UserResponse(booking.getUser());
+        this.cancha = new CanchaResponse(booking.getCancha());
         this.isReserved = booking.getIsReserved();
         this.time = booking.getTime();
+        this.booking = booking;
     }
 }

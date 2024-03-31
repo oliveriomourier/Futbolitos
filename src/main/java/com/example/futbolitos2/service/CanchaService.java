@@ -23,9 +23,6 @@ public class CanchaService {
         Cancha cancha = new Cancha(createCanchaRequest);
         canchaRepository.save(cancha);
 
-        List<Booking> bookingList = new ArrayList<Booking>();
-        cancha.setBookingList(bookingList);
-
         return cancha;
     }
 
@@ -47,10 +44,8 @@ public class CanchaService {
     }
 
     public Integer canchaDeleteById(Integer canchaId) throws UserNotFoundException{
-        //verify if the cancha exist
         Cancha cancha = getCanchaById(canchaId);
 
-        // delete user
         canchaRepository.delete(cancha);
         return canchaId;
     }
