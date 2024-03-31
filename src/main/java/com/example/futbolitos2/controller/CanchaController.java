@@ -19,7 +19,8 @@ public class CanchaController {
 
     @QueryMapping
     public CanchaResponse cancha(@Argument Integer canchaId){
-        return new CanchaResponse(canchaService.getCanchaById(canchaId));
+        Cancha cancha = canchaService.getCanchaById(canchaId);
+        return new CanchaResponse(cancha);
     }
 
     @MutationMapping

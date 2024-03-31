@@ -3,6 +3,7 @@ package com.example.futbolitos2.service;
 import com.example.futbolitos2.entity.Booking;
 import com.example.futbolitos2.entity.Cancha;
 import com.example.futbolitos2.entity.User;
+import com.example.futbolitos2.exception.UserNotFoundException;
 import com.example.futbolitos2.repository.BookingRepository;
 import com.example.futbolitos2.request.CreateBookingRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +19,25 @@ public class BookingService {
     CanchaService canchaService;
 
     public Booking createBooking(CreateBookingRequest bookingRequest){
-        //verificar que user exista
         User user = userService.getUserById(bookingRequest.getUserId());
-
-        //verificar que cancha exista
         Cancha cancha = canchaService.getCanchaById(bookingRequest.getCanchaId());
+        Booking booking = new Booking(user, cancha, bookingRequest.getIsReserved(), bookingRequest.getTime());
 
-        // crear la reserva
-        Booking booking = new Booking();
-        booking.setIsReserved(bookingRequest.getIsReserved());
-        booking.setUser(user);
-        booking.setCancha(cancha);
-        booking.setTime(bookingRequest.getTime());
-
-
-        //guardar la reserva en la BBDD
         bookingRepository.save(booking);
 
         return booking;
+    }
+
+    public Booking getBookingById(Integer bookingId) throws UserNotFoundException {
+        return bookingRepository
+                .findById(Long.valueOf(bookingId))
+                .orElseThrow(() -> new UserNotFoundException("Booking with id: " + bookingId + " doesn't exist"));
+    }
+
+    public Integer deleteBooking(Integer bookingId){
+        Booking booking = getBookingById(bookingId);
+        bookingRepository.delete(booking);
+
+        return bookingId;
     }
 }
